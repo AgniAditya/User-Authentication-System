@@ -2,7 +2,7 @@ import Register from './auth/register.js'
 import express from 'express'
 
 const app = express()
-const port = 3000
+const port = process.env.port
 
 app.use(express.json())
 app.use('/api/auth',Register)
