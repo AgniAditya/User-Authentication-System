@@ -4,6 +4,21 @@ A lightweight, end-to-end user authentication stack using Node.js, Express, Pris
 
 ---
 
+## 🌐 Live Demo
+
+**Try the app here:**  
+[https://user-authentication-system-95u2.onrender.com](https://user-authentication-system-95u2.onrender.com)
+
+---
+
+## 🖼️ Screenshot
+
+![User Auth System Screenshot](./public/assets/UserAuthSystem.png)
+
+> Home page
+
+---
+
 ## 📸 Overview
 
 | Stack      | Details                                   |
