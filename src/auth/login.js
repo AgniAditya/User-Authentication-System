@@ -20,7 +20,7 @@ router.post('/login', async (req,res) => {
 
     const token = jwt.sign( {id : user.id} , process.env.JWT_SECRET, {expiresIn : '1h'})
 
-    res.status(201).json({token, user : {id : user.id , name : user.name ,email : user.email}})
+    return res.status(201).json({token, user : {id : user.id , name : user.name ,email : user.email}})
 })
 
 export default router

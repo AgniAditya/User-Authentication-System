@@ -31,9 +31,9 @@ router.post('/register', async (req,res) => {
             }
         })
         const {password , ...safeUser} = user
-        res.sendStatus(201).json(safeUser)
+        return res.status(201).json(safeUser)
     } catch(err){
-        res.status(500).json({ error: 'Server error' });
+        return res.status(500).json({ error: 'Server error' });
     }
 })
 

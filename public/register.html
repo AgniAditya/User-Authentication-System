@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: 60px auto; }
+    label, input { display: block; width: 100%; margin-bottom: 12px; }
+    button { width: 100%; padding: 8px; }
+  </style>
+</head>
+<body>
+
+  <a href="/" style="position:absolute;top:10px;left:10px;">🏠 Home</a>
+  
+  <h2>Sign up</h2>
+
+  <form id="registerForm">
+    <label>Name
+      <input type="text" name="username" required />
+    </label>
+
+    <label>Email
+      <input type="email" name="useremail" required />
+    </label>
+
+    <label>Password
+      <input type="password" name="userpassword" minlength="6" required />
+    </label>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    const form   = document.getElementById('registerForm');
+    const msgBox = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const body = {
+        username   : form.username.value.trim(),
+        useremail  : form.useremail.value.trim(),
+        userpassword: form.userpassword.value
+      };
+
+      try {
+        const res = await fetch('http://localhost:4000/api/auth/register', {
+          method : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body   : JSON.stringify(body)
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          msgBox.textContent = '✅ Registration successful!';
+          form.reset();
+        } else {
+          msgBox.textContent = `❌ ${data.error || 'Error'}`;
+        }
+      } catch (err) {
+        msgBox.textContent = 'Network error';
+      }
+    });
+  </script>
+
+</body>
+</html>

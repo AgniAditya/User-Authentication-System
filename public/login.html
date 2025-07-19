@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: 60px auto; }
+    label, input { display: block; width: 100%; margin-bottom: 12px; }
+    button { width: 100%; padding: 8px; }
+  </style>
+</head>
+<body>
+
+  <a href="/" style="position:absolute;top:10px;left:10px;">🏠 Home</a>
+
+  <h2>Sign in</h2>
+
+  <form id="loginForm">
+    <label>Email
+      <input type="email" name="email" required />
+    </label>
+
+    <label>Password
+      <input type="password" name="password" required />
+    </label>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    const form   = document.getElementById('loginForm');
+    const msgBox = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const body = {
+        useremail: form.email.value.trim(),
+        userpassword: form.password.value
+      };
+
+      try {
+        const res = await fetch('http://localhost:4000/api/auth/login', {
+          method : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body   : JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          // store token (localStorage, cookie, etc.)
+          localStorage.setItem('token', data.token);
+          msgBox.textContent = '✅ Login successful!';
+          // redirect or reload
+          // window.location.href = '/dashboard.html';
+        } else {
+          msgBox.textContent = `❌ ${data.error || 'Login failed'}`;
+        }
+      } catch (err) {
+        msgBox.textContent = 'Network error';
+      }
+    });
+  </script>
+
+</body>
+</html>
