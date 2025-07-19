@@ -13,10 +13,17 @@ A lightweight, end-to-end user authentication stack using Node.js, Express, Pris
 
 ## 🖼️ Screenshot
 
-![User Auth System Screenshot](./public/assets/UserAuthSystem.png)
-
 > Home page
 
+![User Auth System Home page Screenshot](./public/assets/HomePage.png)
+
+> Register page
+
+![User Auth System Register page Screenshot](./public/assets/RegisterPage.png)
+
+> Login page
+
+![User Auth System Login page Screenshot](./public/assets/LoginPage.png)
 ---
 
 ## 📸 Overview

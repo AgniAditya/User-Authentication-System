@@ -2,24 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <style>
-    body { font-family: Arial; display: flex; height: 100vh; align-items: center; justify-content: center; gap: 20px; }
-    a.button {
-      padding: 12px 24px;
-      font-size: 1.1rem;
-      color: #fff;
-      background: #007bff;
-      border: none;
-      border-radius: 4px;
-      text-decoration: none;
-    }
-  </style>
+  <link rel="stylesheet" href="./style/home.css">
 </head>
 <body>
+  <!-- Floating particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
 
-  <a class="button" href="/register">Register</a>
-  <a class="button" href="/login">Login</a>
-
+  <div class="container">
+    <h1 class="logo">Welcome</h1>
+    <p class="subtitle">Choose your path to get started</p>
+    
+    <div class="button-group">
+      <a class="button" href="/register">Register</a>
+      <a class="button" href="/login">Login</a>
+    </div>
+  </div>
 </body>
 </html>
