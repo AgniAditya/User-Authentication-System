@@ -4,11 +4,13 @@ import express from 'express'
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PrismaClient } from '@prisma/client';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
 const app = express()
+const prisma = new PrismaClient()
 const PORT = process.env.PORT || 3000
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -27,6 +29,19 @@ app.get('/register', (_, res) => {
 
 app.get('/login', (_, res) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+});
+
+app.get('/db', async (_, res) => {
+  const users = await prisma.user.findMany({
+    select: { id: true, name: true, email: true }
+  });
+  res.json(users);
+});
+
+
+app.get('/db-full', async (_req, res) => {
+  const allUsers = await prisma.user.findMany();
+  res.json(allUsers);
 });
 
 app.listen(PORT, () => {
